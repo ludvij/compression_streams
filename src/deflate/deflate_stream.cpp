@@ -1,7 +1,7 @@
 // #include "internal/pch.hpp"
 
-#include "deflate_stream.hpp"
-#include "Options.hpp"
+#include "deflate/deflate_stream.hpp"
+#include "deflate/Options.hpp"
 #include "utility.hpp"
 
 #include <array>
@@ -14,8 +14,7 @@
 
 #include <zlib.h>
 
-namespace comp
-{
+namespace Lud {
 
 // shoule probably move this somewhere so it's not duplicated
 
@@ -27,7 +26,8 @@ struct deflate_streambuf::Impl
 };
 
 deflate_streambuf::deflate_streambuf(std::ostream& output_stream, CompressionOptions options)
-    : m_output_stream(output_stream), p_impl(new Impl)
+    : m_output_stream(output_stream)
+    , p_impl(new Impl)
 {
     set_put_area();
 
@@ -149,7 +149,8 @@ void deflate_streambuf::compress_buffer(const size_t sz, const bool end)
         {
             throw std::runtime_error("error while writing to stream");
         }
-    } while (z_strm.avail_out == 0);
+    }
+    while (z_strm.avail_out == 0);
 
     if (end)
     {
@@ -162,8 +163,9 @@ void deflate_streambuf::compress_buffer(const size_t sz, const bool end)
 }
 
 deflate_ostream::deflate_ostream(std::ostream& ostream, CompressionOptions options)
-    : Base(&m_buffer), m_buffer(ostream, options)
+    : Base(&m_buffer)
+    , m_buffer(ostream, options)
 {
 }
 
-} // namespace comp
+} // namespace Lud

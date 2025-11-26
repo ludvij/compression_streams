@@ -37,12 +37,14 @@ add_library(${PROJECT_NAME} STATIC)
 
 
 set(SOURCES
-	include/compression_streams/deflate_stream.hpp
-	include/compression_streams/inflate_stream.hpp
-	include/compression_streams/Options.hpp
+	include/comp_streams/deflate/deflate_stream.hpp
+	include/comp_streams/deflate/inflate_stream.hpp
+	include/comp_streams/deflate/Options.hpp
 
-	src/deflate_stream.cpp
-	src/inflate_stream.cpp
+	src/deflate/deflate_stream.cpp
+	src/deflate/inflate_stream.cpp
+
+	include/comp_streams/CompStreams.hpp
 )
 
 
@@ -51,7 +53,7 @@ target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 target_include_directories(${PROJECT_NAME}
 	PUBLIC  ${CMAKE_CURRENT_LIST_DIR}/include
 	PRIVATE ${CMAKE_CURRENT_LIST_DIR}/src
-	PRIVATE ${CMAKE_CURRENT_LIST_DIR}/include/compression_streams
+	PRIVATE ${CMAKE_CURRENT_LIST_DIR}/include/comp_streams
 )
 
 target_link_libraries(${PROJECT_NAME} 

@@ -6,8 +6,7 @@
 
 #include "Options.hpp"
 
-namespace comp
-{
+namespace Lud {
 
 class deflate_streambuf : public std::streambuf
 {
@@ -78,6 +77,6 @@ private:
     deflate_streambuf m_buffer;
 };
 
-} // namespace comp
+} // namespace Lud
 
 #endif //! VARF_DEFLATE_STREAM_HEADER

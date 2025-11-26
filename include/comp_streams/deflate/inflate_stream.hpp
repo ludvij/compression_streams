@@ -6,8 +6,7 @@
 #include <iostream>
 #include <streambuf>
 
-namespace comp
-{
+namespace Lud {
 
 class inflate_streambuf : public std::streambuf
 {
@@ -72,5 +71,5 @@ public:
 private:
     inflate_streambuf m_buffer;
 };
-} // namespace comp
+} // namespace Lud
 #endif //! VARF_INFLATE_STREAM_HEADER

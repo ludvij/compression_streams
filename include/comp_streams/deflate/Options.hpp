@@ -3,8 +3,7 @@
 
 #include <cstdint>
 
-namespace comp
-{
+namespace Lud {
 
 constexpr static auto CHUNK_SIZE = 16384;
 
@@ -38,5 +37,5 @@ struct CompressionOptions
     CompressionStrategy strategy = CompressionStrategy::DEFAULT;
     // int memLevel; // UNUSED
 };
-} // namespace comp
+} // namespace Lud
 #endif //! VARF_COMPRESSION_OPTIONS_HEADER

@@ -1,7 +1,7 @@
 // #include "internal/pch.hpp"
 
-#include "inflate_stream.hpp"
-#include "Options.hpp"
+#include "deflate/inflate_stream.hpp"
+#include "deflate/Options.hpp"
 #include "utility.hpp"
 
 #include <array>
@@ -13,8 +13,7 @@
 
 #include <zlib.h>
 
-namespace comp
-{
+namespace Lud {
 
 struct inflate_streambuf::Impl
 {
@@ -24,7 +23,8 @@ struct inflate_streambuf::Impl
 };
 
 inflate_streambuf::inflate_streambuf(std::istream& input_stream, CompressionOptions options)
-    : m_input_stream(input_stream), p_impl(new Impl)
+    : m_input_stream(input_stream)
+    , p_impl(new Impl)
 {
     const auto [level, w_bits, strategy] = translate_options(options);
 
@@ -148,7 +148,8 @@ void inflate_streambuf::set_get_area(const size_t sz)
 }
 
 inflate_istream::inflate_istream(std::istream& istream, CompressionOptions options)
-    : Base(&m_buffer), m_buffer(istream, options)
+    : Base(&m_buffer)
+    , m_buffer(istream, options)
 {
 }
-} // namespace comp
+} // namespace Lud

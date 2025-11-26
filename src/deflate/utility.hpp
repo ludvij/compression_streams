@@ -1,9 +1,9 @@
-#include "Options.hpp"
+#include "deflate/Options.hpp"
 
 #include <zlib.h>
 
-namespace comp
-{
+namespace Lud {
+
 auto constexpr translate_options(CompressionOptions options)
 {
     struct
@@ -60,4 +60,4 @@ auto constexpr translate_options(CompressionOptions options)
 
     return t;
 }
-} // namespace comp
+} // namespace Lud
